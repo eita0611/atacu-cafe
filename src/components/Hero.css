@@ -1,0 +1,410 @@
+.hero {
+  padding-top: clamp(20px, 5vw, 64px);
+}
+
+.hero__grid {
+  display: grid;
+  gap: 28px;
+}
+
+.hero__place {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--olive-deep);
+  line-height: 1;
+}
+
+.hero__place::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--ink);
+}
+
+.hero__title {
+  margin-top: 22px;
+  font-size: clamp(36px, 4.2vw + 18px, 64px);
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+}
+
+.hero__lead {
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.hero__lead-line {
+  display: block;
+}
+
+.hero__actions {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.hero__actions .button {
+  padding-inline: 16px;
+}
+
+.hero__facts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.hero__facts > div {
+  padding: 14px 18px 0;
+  border-left: 1px solid var(--line);
+  margin-top: 14px;
+}
+
+.hero__facts > div:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.hero__facts dt {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--ink);
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+
+.hero__facts dd {
+  margin-top: 2px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ---------------- 映像 ---------------- */
+.hero__visual {
+  position: relative;
+}
+
+.hero-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--sand);
+}
+
+.hero-media__poster,
+.hero-media__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-media__video {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease);
+}
+
+.hero-media.is-video .hero-media__video {
+  opacity: 1;
+}
+
+.hero-media__tag {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 4px 10px;
+  background: color-mix(in oklch, var(--ink) 55%, transparent);
+  color: var(--paper);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+.hero-media__toggle {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: color-mix(in oklch, var(--ink) 45%, transparent);
+  color: var(--paper);
+  transition: background-color 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+  .hero-media__toggle:hover {
+    background: var(--ink);
+  }
+}
+
+.hero__inset {
+  display: none;
+}
+
+.hero__caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.hero__caption-brand {
+  display: none;
+}
+
+.hero__caption .latin {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.hero__foot {
+  display: none;
+}
+
+/* スマートフォンでは写真を見出しの直後に置き、最初の画面に写真が入るようにする */
+@media (max-width: 959px) {
+  .hero__caption {
+    display: none;
+  }
+
+  .hero__lead {
+    font-size: 14.5px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero__grid {
+    grid-template-areas:
+      'place'
+      'title'
+      'visual'
+      'rest';
+  }
+
+  .hero__copy {
+    display: contents;
+  }
+
+  .hero__place {
+    grid-area: place;
+  }
+
+  .hero__title {
+    grid-area: title;
+    margin-top: -6px;
+  }
+
+  .hero__visual {
+    grid-area: visual;
+    margin-top: -4px;
+  }
+
+  .hero__lead,
+  .hero__actions,
+  .hero__facts {
+    grid-column: 1;
+  }
+
+  .hero__lead {
+    margin-top: -6px;
+  }
+
+  .hero__actions,
+  .hero__facts {
+    margin-top: -4px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  .hero-media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .hero__actions {
+    max-width: 480px;
+  }
+}
+
+@media (min-width: 960px) {
+  .hero {
+    padding-top: clamp(48px, 6vw, 88px);
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(40px, 5vw, 80px);
+    align-items: center;
+  }
+
+  .hero__title {
+    margin-top: 32px;
+    font-size: clamp(44px, 3vw + 14px, 64px);
+  }
+
+  .hero__lead {
+    margin-top: 28px;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .hero__actions .button {
+    padding-inline: 28px;
+  }
+
+  .hero__facts {
+    margin-top: 48px;
+  }
+
+  .hero__facts > div {
+    padding-inline: 24px;
+  }
+
+  /* 写真は右端まで広げ、誌面の見開きのような余白にする */
+  .hero__visual {
+    margin-right: calc((100vw - min(100vw - var(--gutter) * 2, var(--container))) / -2);
+  }
+
+  .hero-media {
+    aspect-ratio: 7 / 6;
+    max-height: min(calc(100svh - var(--header-h) - 140px), 720px);
+    width: 100%;
+  }
+
+  .hero__inset {
+    display: block;
+    position: absolute;
+    left: -56px;
+    bottom: 26px;
+    width: 150px;
+    padding: 7px 7px 0;
+    background: var(--paper);
+    box-shadow: 0 1px 0 var(--line-soft);
+  }
+
+  .hero__inset::after {
+    content: 'イメージ';
+    display: block;
+    padding: 5px 0 6px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  .hero__caption {
+    padding: 0 var(--gutter) 0 128px;
+  }
+
+  .hero__caption-brand {
+    display: inline;
+  }
+
+  .hero-media__tag {
+    left: auto;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .hero__foot {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 28px;
+  }
+
+  .hero__scroll {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    font-family: var(--font-label);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero__scroll svg {
+    animation: scroll-cue 2.4s var(--ease) infinite;
+  }
+}
+
+/* ---------------- 開いたときの演出（この1か所だけ） ---------------- */
+.js .hero__title .line {
+  animation: rise 1.1s var(--ease) both;
+}
+
+.js .hero__title .line:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.js .hero__lead,
+.js .hero__actions,
+.js .hero__facts,
+.js .hero__place {
+  animation: fade 1.2s var(--ease) 0.35s both;
+}
+
+.js .hero-media {
+  animation: unveil 1.4s var(--ease) 0.1s both;
+}
+
+.js .hero__inset {
+  animation: fade 1s var(--ease) 0.8s both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes unveil {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(-2px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+}

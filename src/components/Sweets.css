@@ -1,0 +1,52 @@
+.sweets {
+  background: var(--night);
+  color: var(--night-text);
+}
+
+.sweets .frame {
+  background: oklch(0.24 0.014 131);
+}
+
+.sweets__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 14px;
+  align-items: start;
+}
+
+/* 2列目を少し下げて、整列しすぎない並びにする */
+.sweets__list li:nth-child(2n) {
+  margin-top: 48px;
+}
+
+.sweets__name {
+  margin-top: 14px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  color: var(--paper);
+}
+
+.sweets__note {
+  margin-top: 48px;
+  color: color-mix(in oklch, var(--paper) 62%, transparent);
+  max-width: 44em;
+}
+
+@media (min-width: 960px) {
+  .sweets__list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .sweets__list li:nth-child(2n) {
+    margin-top: 72px;
+  }
+
+  .sweets__name {
+    margin-top: 18px;
+    font-size: 17px;
+  }
+}

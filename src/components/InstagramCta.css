@@ -1,0 +1,52 @@
+.insta {
+  padding-block: clamp(64px, 8vw, 104px);
+  background: var(--paper-2);
+}
+
+.insta__inner {
+  display: grid;
+  gap: 32px;
+}
+
+.insta__title {
+  margin-top: 22px;
+  font-size: clamp(21px, 1vw + 16px, 28px);
+  line-height: 1.7;
+}
+
+.insta__text {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.insta__action {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+
+.insta__handle {
+  font-style: italic;
+  font-size: clamp(44px, 4vw + 24px, 76px);
+  line-height: 1.05;
+  color: var(--terracotta);
+  transition: color 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+  .insta__handle:hover {
+    color: var(--ink);
+  }
+}
+
+@media (min-width: 960px) {
+  .insta__inner {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 64px;
+  }
+
+  .insta__action {
+    justify-items: end;
+  }
+}

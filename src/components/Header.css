@@ -1,0 +1,235 @@
+.logo {
+  font-family: var(--font-latin);
+  color: var(--ink);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.logo__main {
+  font-weight: 500;
+  font-size: 1em;
+  letter-spacing: 0.02em;
+}
+
+.logo__sub {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--terracotta);
+}
+
+/* ---------------- ヘッダー ---------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in oklch, var(--paper) 92%, transparent);
+  -webkit-backdrop-filter: saturate(1.2) blur(10px);
+  backdrop-filter: saturate(1.2) blur(10px);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color 0.4s var(--ease),
+    background-color 0.4s var(--ease);
+}
+
+.site-header.is-scrolled {
+  border-bottom-color: var(--line-soft);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding-inline: var(--gutter);
+  max-width: calc(var(--container) + 2 * 64px + 80px);
+  margin-inline: auto;
+}
+
+.site-header__logo {
+  font-size: 30px;
+  padding-block: 8px;
+}
+
+.site-nav {
+  display: none;
+}
+
+.menu-toggle {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-right: -12px;
+  color: var(--ink);
+}
+
+@media (min-width: 960px) {
+  .site-header__logo {
+    font-size: 32px;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .site-nav ul {
+    display: flex;
+    gap: 34px;
+  }
+
+  .site-nav ul a {
+    position: relative;
+    display: block;
+    padding-block: 10px;
+    font-family: var(--font-label);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .site-nav ul a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0.22em;
+    bottom: 4px;
+    height: 1px;
+    background: var(--terracotta);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s var(--ease);
+  }
+
+  .site-nav ul a[aria-current]::after {
+    transform: scaleX(1);
+  }
+
+  .site-nav__insta {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--ink);
+    transition:
+      background-color 0.3s var(--ease),
+      color 0.3s var(--ease);
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+@media (min-width: 960px) and (hover: hover) {
+  .site-nav ul a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .site-nav__insta:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+}
+
+/* ---------------- スマートフォンのメニュー ---------------- */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  padding: 0 var(--gutter) calc(24px + env(safe-area-inset-bottom));
+  background: var(--paper);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+.mobile-menu.is-open {
+  animation: menu-in 0.45s var(--ease) both;
+}
+
+.mobile-menu__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  flex: none;
+  font-size: 30px;
+}
+
+.mobile-menu__list {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.mobile-menu__list li {
+  border-bottom: 1px solid var(--line);
+  animation: menu-item-in 0.6s var(--ease) both;
+  animation-delay: calc(0.06s * var(--i) + 0.1s);
+}
+
+.mobile-menu__list a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 18px 2px;
+}
+
+.mobile-menu__ja {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+}
+
+.mobile-menu__en {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--terracotta);
+}
+
+.mobile-menu__info {
+  margin-top: auto;
+  padding-top: 32px;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.mobile-menu__actions {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.mobile-menu__actions .button {
+  min-height: 50px;
+  padding: 0 10px;
+  gap: 8px;
+  letter-spacing: 0.06em;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}

@@ -1,0 +1,43 @@
+.coffee {
+  --coffee-ratio: 4 / 3;
+}
+
+.coffee__body {
+  display: grid;
+  gap: 28px;
+  margin-top: clamp(36px, 5vw, 64px);
+}
+
+.coffee__display {
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(40px, 3vw + 26px, 64px);
+  line-height: 1.15;
+  color: var(--olive-deep);
+}
+
+.coffee__display span {
+  display: block;
+}
+
+.coffee__text .lead {
+  margin-top: 22px;
+}
+
+.coffee__text .note {
+  margin-top: 14px;
+}
+
+@media (min-width: 720px) {
+  .coffee {
+    --coffee-ratio: 2200 / 940;
+  }
+}
+
+@media (min-width: 960px) {
+  .coffee__body {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+}

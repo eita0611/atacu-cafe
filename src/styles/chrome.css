@@ -1,0 +1,64 @@
+/* ---------------- 上部のデモ表示 ---------------- */
+.demo-bar {
+  background: var(--sand);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.demo-bar p {
+  padding: 7px var(--gutter);
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: oklch(0.45 0.013 130);
+}
+
+/* ---------------- スマートフォン下部の固定リンク ---------------- */
+.mobile-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 1fr 1fr 64px;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--olive);
+  color: var(--paper);
+  transform: translateY(100%);
+  transition: transform 0.5s var(--ease);
+}
+
+.mobile-bar.is-visible {
+  transform: none;
+}
+
+.mobile-bar a {
+  display: grid;
+  place-items: center;
+  min-height: 56px;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+}
+
+.mobile-bar a + a {
+  border-left: 1px solid color-mix(in oklch, var(--paper) 22%, transparent);
+}
+
+.mobile-bar__insta {
+  background: var(--olive-deep);
+}
+
+:root {
+  --bar-space: calc(56px + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 960px) {
+  .mobile-bar {
+    display: none;
+  }
+
+  :root {
+    --bar-space: 0px;
+  }
+}
